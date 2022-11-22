@@ -3,7 +3,7 @@ import { monitor } from '@colyseus/monitor'
 import { createServer } from 'http'
 import express from 'express'
 import cors from 'cors'
-import { StateHandlerRoom } from './rooms/StateHandlerRoom'
+import { MerseWorld } from './rooms/MerseWorld'
 
 const port = Number(process.env.port) || 2567
 
@@ -15,7 +15,7 @@ const gameServer = new Server({
   server: createServer(app),
 })
 
-gameServer.define('classroom', StateHandlerRoom).enableRealtimeListing()
+gameServer.define('merse-world', MerseWorld).enableRealtimeListing()
 
 app.use('/colyseus', monitor())
 
