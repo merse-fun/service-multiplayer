@@ -3,12 +3,13 @@ import { getRandomInt } from '../../utils'
 import { MerseWorld } from '../MerseWorld'
 import { Player, Vector3, Vector4 } from '../schema/WorldState'
 
-const INITIAL_Y_AXES = 1
+const INITIAL_Y_AXES = 0
 
 export class PlayerCreateCommand extends Command<
   MerseWorld,
   {
     sessionId: string
+    publicKey: string
   }
 > {
   execute(payload: this['payload']) {
@@ -17,7 +18,7 @@ export class PlayerCreateCommand extends Command<
     const z = getRandomInt(5)
     this.state.players.set(
       payload.sessionId,
-      new Player(payload.sessionId, { x, y, z }, { x: 0, y: 0, z: 0, w: 0 })
+      new Player(payload.sessionId, { x, y, z }, { x: 0, y: 0, z: 0, w: 0 }, payload.publicKey)
     )
   }
 }

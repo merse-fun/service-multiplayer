@@ -1,5 +1,5 @@
-import { Client, Room } from 'colyseus'
 import { Dispatcher } from '@colyseus/command'
+import { Client, Room } from 'colyseus'
 import {
   PlayerActionCommand,
   PlayerCreateCommand,
@@ -23,8 +23,6 @@ export class MerseWorld extends Room<WorldState> {
     })
 
     this.onMessage(MESSAGES.PLAYER.ACTION, (client, data) => {
-      console.log(data)
-
       this.dispatcher.dispatch(new PlayerActionCommand(), {
         sessionId: client.sessionId,
         action: data.action,
@@ -37,6 +35,7 @@ export class MerseWorld extends Room<WorldState> {
 
     this.dispatcher.dispatch(new PlayerCreateCommand(), {
       sessionId: client.sessionId,
+      publicKey: options.publicKey,
     })
   }
 
