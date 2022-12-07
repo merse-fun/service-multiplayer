@@ -67,7 +67,7 @@ export class Player extends Schema {
     this.id = id
     this.position = new Position(position)
     this.quaternion = new Quaternion(quaternion)
-    this.action = 'Idle'
+    this.action = 'idle'
     this.publicKey = publicKey
   }
 }
